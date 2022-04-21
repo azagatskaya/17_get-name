@@ -39,16 +39,8 @@ function setDisabled(el) {
 	el.value = '';
 }
 
-function setFamilyName(arr) {
-	document.querySelector('#family-name').value = arr[0];
-}
-
-function setFirstName(arr) {
-	document.querySelector('#first-name').value = arr[1];
-}
-
-function setFathersName(arr) {
-	document.querySelector('#fathers-name').value = arr[2];
+function setName(selector, value) {
+	document.querySelector(selector).value = value;
 }
 
 function clearValue(el) {
@@ -56,8 +48,8 @@ function clearValue(el) {
 }
 
 function printResult(arr) {
-	setFamilyName(arr);
-	setFirstName(arr);
-	setFathersName(arr);
+	setName('#family-name', arr[0]);
+	setName('#first-name', arr[1]);
+	setName('#fathers-name', arr[2]);
 	getResultInputs().forEach((item) => setEnabled(item));
 }
