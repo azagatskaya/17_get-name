@@ -15,14 +15,12 @@ function reset() {
 
 function convert() {
   var userName = getUserName().value;
-  console.log('UserName = ' + userName);
   var convertedName = userName.split(" ").filter(function (item) {
     return item !== '';
   }).map(function (item) {
     return item[0].toUpperCase() + item.slice(1).toLowerCase();
   });
   printResult(convertedName);
-  console.log(convertedName);
 }
 
 function getUserName() {

@@ -1,12 +1,10 @@
 "use strict";
 
-
 const btnReset = document.querySelector('#button-reset');
 const btnConvert = document.querySelector('#button-convert');
 
 btnReset.addEventListener('click', reset);
 btnConvert.addEventListener('click', convert);
-
 
 function reset() {
 	clearValue(getUserName());
@@ -16,14 +14,12 @@ function reset() {
 
 function convert() {
 	const userName = getUserName().value;
-	console.log('UserName = ' + userName);
 	let convertedName = userName.split(" ").filter((item) => {
 		return item !== '';
 	}).map((item => {
 		return item[0].toUpperCase() + item.slice(1).toLowerCase();
 	}));
 	printResult(convertedName);
-	console.log(convertedName);
 }
 
 function getUserName() {
