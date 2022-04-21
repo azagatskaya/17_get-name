@@ -9,17 +9,26 @@ btnConvert.addEventListener('click', convert);
 function reset() {
 	clearValue(getUserName());
 	getUserName().focus();
-	getResultInputs().forEach((item) => setDisabled(item));
+	setDisabledAll();
 }
 
 function convert() {
+	if (getResultInputs() !== []) {
+		setDisabledAll();
+	}
 	const userName = getUserName().value;
-	let convertedName = userName.split(" ").filter((item) => {
-		return item !== '';
-	}).map((item => {
-		return item[0].toUpperCase() + item.slice(1).toLowerCase();
-	}));
-	printResult(convertedName);
+	const userNameRegExp = /[a-zа-я]/i;
+	if (userNameRegExp.test(userName)) {
+		let convertedName = userName.split(" ").filter((item) => {
+			return item !== '';
+		}).map((item => {
+			return item[0].toUpperCase() + item.slice(1).toLowerCase();
+		}));
+		return convertedName.length === 3 ? printResult(convertedName) : alert(`Проверьте правильность ввода данных. 
+		Необходимо ввести Фамилию, Имя и Отчество`);
+	} else {
+		alert("Вы не ввели данные.");
+	}
 }
 
 function getUserName() {
@@ -32,6 +41,10 @@ function getResultInputs() {
 
 function setEnabled(el) {
 	el.removeAttribute('disabled');
+}
+
+function setDisabledAll() {
+	getResultInputs().forEach((item) => setDisabled(item));
 }
 
 function setDisabled(el) {
